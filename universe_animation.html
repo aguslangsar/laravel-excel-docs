@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animasi Alam Semesta</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(45deg, #0a0a0a, #1a1a2e, #16213e, #0f0f23);
+            overflow: hidden;
+            height: 100vh;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .universe {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            perspective: 1000px;
+        }
+
+        /* Animasi Bintang-bintang */
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 2s infinite alternate;
+        }
+
+        .star.small {
+            width: 2px;
+            height: 2px;
+        }
+
+        .star.medium {
+            width: 3px;
+            height: 3px;
+        }
+
+        .star.large {
+            width: 4px;
+            height: 4px;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.3; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* Sistem Tata Surya */
+        .solar-system {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 800px;
+        }
+
+        /* Matahari */
+        .sun {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, #ffeb3b, #ff9800, #ff5722);
+            border-radius: 50%;
+            box-shadow: 0 0 50px #ffeb3b, 0 0 100px #ff9800;
+            animation: sunRotate 10s linear infinite;
+        }
+
+        @keyframes sunRotate {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        /* Orbit Planet */
+        .orbit {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .orbit1 {
+            width: 200px;
+            height: 200px;
+            animation: rotate 8s linear infinite;
+        }
+
+        .orbit2 {
+            width: 300px;
+            height: 300px;
+            animation: rotate 15s linear infinite;
+        }
+
+        .orbit3 {
+            width: 400px;
+            height: 400px;
+            animation: rotate 25s linear infinite;
+        }
+
+        .orbit4 {
+            width: 500px;
+            height: 500px;
+            animation: rotate 40s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        /* Planet */
+        .planet {
+            position: absolute;
+            border-radius: 50%;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .mercury {
+            width: 15px;
+            height: 15px;
+            background: #8c7853;
+            box-shadow: inset -2px -2px 5px rgba(0,0,0,0.3);
+        }
+
+        .venus {
+            width: 20px;
+            height: 20px;
+            background: #ffc649;
+            box-shadow: inset -3px -3px 8px rgba(0,0,0,0.3);
+        }
+
+        .earth {
+            width: 25px;
+            height: 25px;
+            background: linear-gradient(45deg, #4fc3f7, #2e7d32);
+            box-shadow: inset -3px -3px 10px rgba(0,0,0,0.3);
+            animation: earthRotate 2s linear infinite;
+        }
+
+        @keyframes earthRotate {
+            0% { transform: translateX(-50%) rotate(0deg); }
+            100% { transform: translateX(-50%) rotate(360deg); }
+        }
+
+        .mars {
+            width: 18px;
+            height: 18px;
+            background: #cd5c5c;
+            box-shadow: inset -2px -2px 6px rgba(0,0,0,0.3);
+        }
+
+        /* Galaksi Spiral */
+        .galaxy {
+            position: absolute;
+            top: 20%;
+            right: 10%;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(ellipse at center, 
+                rgba(138, 43, 226, 0.8) 0%,
+                rgba(30, 144, 255, 0.6) 30%,
+                rgba(255, 20, 147, 0.4) 60%,
+                transparent 100%);
+            animation: galaxyRotate 30s linear infinite;
+        }
+
+        @keyframes galaxyRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .galaxy::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(ellipse at center,
+                rgba(255, 255, 255, 0.3) 0%,
+                transparent 70%);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Komet */
+        .comet {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 10px white;
+            animation: cometFly 12s linear infinite;
+        }
+
+        .comet::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 8px;
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(to right, white, transparent);
+            border-radius: 50%;
+        }
+
+        @keyframes cometFly {
+            0% {
+                top: 10%;
+                left: -5%;
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                top: 90%;
+                left: 105%;
+                opacity: 0;
+            }
+        }
+
+        /* Nebula */
+        .nebula {
+            position: absolute;
+            top: 60%;
+            left: 15%;
+            width: 300px;
+            height: 200px;
+            background: radial-gradient(ellipse at center,
+                rgba(255, 105, 180, 0.3) 0%,
+                rgba(138, 43, 226, 0.2) 40%,
+                rgba(30, 144, 255, 0.1) 70%,
+                transparent 100%);
+            border-radius: 50%;
+            animation: nebulaFloat 20s ease-in-out infinite;
+        }
+
+        @keyframes nebulaFloat {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-20px) scale(1.1); }
+        }
+
+        /* Informasi */
+        .info {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: white;
+            font-family: 'Arial', sans-serif;
+            z-index: 1000;
+        }
+
+        .info h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .info p {
+            font-size: 14px;
+            opacity: 0.8;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        /* Shooting Stars */
+        .shooting-star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 10px white;
+        }
+
+        .shooting-star::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 4px;
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(to right, white, transparent);
+        }
+
+        .shooting-star1 {
+            animation: shoot1 3s linear infinite;
+            animation-delay: 2s;
+        }
+
+        .shooting-star2 {
+            animation: shoot2 4s linear infinite;
+            animation-delay: 5s;
+        }
+
+        .shooting-star3 {
+            animation: shoot3 3.5s linear infinite;
+            animation-delay: 8s;
+        }
+
+        @keyframes shoot1 {
+            0% {
+                top: 20%;
+                right: -10%;
+                opacity: 0;
+            }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% {
+                top: 80%;
+                right: 110%;
+                opacity: 0;
+            }
+        }
+
+        @keyframes shoot2 {
+            0% {
+                top: 30%;
+                right: -10%;
+                opacity: 0;
+            }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% {
+                top: 70%;
+                right: 110%;
+                opacity: 0;
+            }
+        }
+
+        @keyframes shoot3 {
+            0% {
+                top: 15%;
+                right: -10%;
+                opacity: 0;
+            }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% {
+                top: 85%;
+                right: 110%;
+                opacity: 0;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .solar-system {
+                width: 400px;
+                height: 400px;
+            }
+            
+            .orbit1 { width: 120px; height: 120px; }
+            .orbit2 { width: 180px; height: 180px; }
+            .orbit3 { width: 240px; height: 240px; }
+            .orbit4 { width: 300px; height: 300px; }
+            
+            .sun {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .galaxy {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .nebula {
+                width: 150px;
+                height: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="universe">
+        <!-- Informasi -->
+        <div class="info">
+            <h1>🌌 Animasi Alam Semesta</h1>
+            <p>Eksplorasi visual tata surya, galaksi, dan fenomena kosmik</p>
+        </div>
+
+        <!-- Bintang-bintang -->
+        <div class="stars" id="stars"></div>
+
+        <!-- Sistem Tata Surya -->
+        <div class="solar-system">
+            <!-- Matahari -->
+            <div class="sun"></div>
+            
+            <!-- Orbit dan Planet -->
+            <div class="orbit orbit1">
+                <div class="planet mercury"></div>
+            </div>
+            
+            <div class="orbit orbit2">
+                <div class="planet venus"></div>
+            </div>
+            
+            <div class="orbit orbit3">
+                <div class="planet earth"></div>
+            </div>
+            
+            <div class="orbit orbit4">
+                <div class="planet mars"></div>
+            </div>
+        </div>
+
+        <!-- Galaksi Spiral -->
+        <div class="galaxy"></div>
+
+        <!-- Nebula -->
+        <div class="nebula"></div>
+
+        <!-- Komet -->
+        <div class="comet"></div>
+
+        <!-- Shooting Stars -->
+        <div class="shooting-star shooting-star1"></div>
+        <div class="shooting-star shooting-star2"></div>
+        <div class="shooting-star shooting-star3"></div>
+    </div>
+
+    <script>
+        // Membuat bintang-bintang secara dinamis
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const starCount = 200;
+
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                
+                // Random ukuran bintang
+                const sizes = ['small', 'medium', 'large'];
+                const randomSize = sizes[Math.floor(Math.random() * sizes.length)];
+                star.classList.add(randomSize);
+                
+                // Random posisi
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                
+                // Random delay animasi
+                star.style.animationDelay = Math.random() * 3 + 's';
+                
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Efek hover pada planet
+        function addPlanetInteraction() {
+            const planets = document.querySelectorAll('.planet');
+            
+            planets.forEach(planet => {
+                planet.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateX(-50%) scale(1.5)';
+                    this.style.transition = 'transform 0.3s ease';
+                    this.style.boxShadow = '0 0 20px rgba(255, 255, 255, 0.8)';
+                });
+                
+                planet.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateX(-50%) scale(1)';
+                    this.style.boxShadow = '';
+                });
+            });
+        }
+
+        // Efek klik pada matahari
+        function addSunInteraction() {
+            const sun = document.querySelector('.sun');
+            
+            sun.addEventListener('click', function() {
+                this.style.animation = 'sunRotate 2s linear infinite';
+                setTimeout(() => {
+                    this.style.animation = 'sunRotate 10s linear infinite';
+                }, 4000);
+            });
+        }
+
+        // Membuat efek partikel saat klik
+        function createParticleEffect(x, y) {
+            for (let i = 0; i < 10; i++) {
+                const particle = document.createElement('div');
+                particle.style.position = 'absolute';
+                particle.style.left = x + 'px';
+                particle.style.top = y + 'px';
+                particle.style.width = '4px';
+                particle.style.height = '4px';
+                particle.style.background = '#fff';
+                particle.style.borderRadius = '50%';
+                particle.style.pointerEvents = 'none';
+                particle.style.zIndex = '9999';
+                
+                document.body.appendChild(particle);
+                
+                // Animasi partikel
+                const angle = (Math.PI * 2 * i) / 10;
+                const velocity = 50 + Math.random() * 50;
+                
+                particle.animate([
+                    { 
+                        transform: 'translate(0, 0) scale(1)',
+                        opacity: 1
+                    },
+                    { 
+                        transform: `translate(${Math.cos(angle) * velocity}px, ${Math.sin(angle) * velocity}px) scale(0)`,
+                        opacity: 0
+                    }
+                ], {
+                    duration: 1000,
+                    easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+                }).onfinish = () => particle.remove();
+            }
+        }
+
+        // Event listener untuk efek partikel
+        document.addEventListener('click', function(e) {
+            createParticleEffect(e.clientX, e.clientY);
+        });
+
+        // Fungsi untuk mengubah kecepatan animasi berdasarkan waktu
+        function updateAnimationSpeed() {
+            const currentTime = new Date();
+            const seconds = currentTime.getSeconds();
+            
+            // Ubah kecepatan rotasi planet berdasarkan detik
+            const speedMultiplier = 0.5 + (seconds / 60);
+            
+            const orbits = document.querySelectorAll('.orbit');
+            orbits.forEach((orbit, index) => {
+                const baseSpeed = [8, 15, 25, 40][index];
+                const newSpeed = baseSpeed / speedMultiplier;
+                orbit.style.animationDuration = newSpeed + 's';
+            });
+        }
+
+        // Inisialisasi
+        document.addEventListener('DOMContentLoaded', function() {
+            createStars();
+            addPlanetInteraction();
+            addSunInteraction();
+            
+            // Update kecepatan animasi setiap detik
+            setInterval(updateAnimationSpeed, 1000);
+        });
+
+        // Efek parallax sederhana
+        document.addEventListener('mousemove', function(e) {
+            const galaxy = document.querySelector('.galaxy');
+            const nebula = document.querySelector('.nebula');
+            
+            const x = (e.clientX / window.innerWidth) * 100;
+            const y = (e.clientY / window.innerHeight) * 100;
+            
+            galaxy.style.transform = `translate(${x * 0.02}px, ${y * 0.02}px) rotate(${galaxy.style.animationDelay || 0}deg)`;
+            nebula.style.transform = `translate(${x * 0.01}px, ${y * 0.01}px) translateY(-20px) scale(1.1)`;
+        });
+    </script>
+</body>
+</html>
